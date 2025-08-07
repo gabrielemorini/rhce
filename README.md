@@ -2,7 +2,7 @@
 
 ## 📋 Introduction
 
-This repository contains my complete implementation of **RHCE (Red Hat Certified Engineer)** exam objectives. Click on mock-exam-example.md to start!
+This repository contains my complete implementation of **RHCE (Red Hat Certified Engineer)** exam objectives. Click on [mock-exam-example.md](https://github.com/rhce/mock-exam-example.md) to start!
 
 ## 🏗️ Architecture
 
@@ -21,9 +21,9 @@ This repository contains my complete implementation of **RHCE (Red Hat Certified
 ```
 rhce-ansible-project/
 ├── README.md
-├── ansible.cfg                 # Configurazione principale Ansible
+├── ansible.cfg               # Configurazione principale Ansible
 ├── inventory/
-│   ├── hosts                  # Inventory statico
+│   ├── hosts                 # Inventory statico
 │   └── group_vars/           # Variables per gruppi
 ├── playbooks/
 │   ├── site.yml              # Playbook principale
@@ -35,6 +35,7 @@ rhce-ansible-project/
 ├── roles/
 │   ├── apache/               # Ruolo custom Apache
 │   ├── common/               # Configurazioni comuni
+│   ├── requirements-repo.yml # Roles and Collections to start this repository
 │   └── requirements.yml      # Ruoli Ansible Galaxy
 ├── templates/
 │   ├── index.html.j2         # Template web server
@@ -43,6 +44,7 @@ rhce-ansible-project/
 │   ├── vault.yml             # Variabili crittografate
 │   └── user_list.yml         # Lista utenti
 ├── scripts/
+│   ├── yum-repo-local.sh     # Local script repository setup
 │   └── yum-repo.sh           # Script repository setup
 └── docs/
     ├── installation.md       # Guida installazione
@@ -62,9 +64,9 @@ sudo dnf install ansible-core python3-pip git
 git clone https://github.com/gabrielemorini/rhce.git
 cd rhce
 
-# Setup environment
-./scripts/setup.sh
+# Install roles
+ansible-galaxy role install -r requirements-repo.yml
 
-# Roles and Collections installations
-ansible-galaxy install -r roles/requirements.yml
+# Install collections
+ansible-galaxy collection install -r requirements-repo.yml
 ```
