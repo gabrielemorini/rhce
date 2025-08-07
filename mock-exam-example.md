@@ -14,10 +14,18 @@ c) Create a configuration file called /home/gabriele/ansible/ansible.cfg so that
 \- The default content collections directory is /home/gabriele/ansible/mycollection   
 \- The default roles directory is /home/gabriele/ansible/roles
 
+<details>
+<summary><strong>Solution</strong></summary>
+
+</details>
+
+
+
 ## **2\. Create and run an Ansible ad-hoc command. As a system administrator, you will need to install software on the managed nodes:**
 
 a) Create a shell script called yum-repo.sh that runs Ansible ad-hoc commands to create the yum repositories on each of the managed nodes as per the following details:   
-b) you need to create 2 repos (BaseOS & AppStream) in the managed nodes.  
+b) you need to create 2 repos (BaseOS & AppStream) in the managed nodes.
+c) Create the yum-repo.yml playbook to set up YUM repositories. Choose whether to use a shell script or an Ansible playbook for the installation.
 **NOTE:** If you're testing locally, I recommend removing the GPG key and setting gpgcheck=no (which disables GPG signature verification).
 
 **BaseOS:**
@@ -38,11 +46,21 @@ b) you need to create 2 repos (BaseOS & AppStream) in the managed nodes.
 * enabled: yes  
 * key: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 
+<details>
+<summary><strong>Solution</strong></summary>
+
+</details>
+
 ## **3\. Create a playbook called /home/gabriele/ansible/packages.yml that:**
 
 a) Installs the php and mariadb packages on hosts in the dev, test, and prod host groups only.   
 b) Installs the RPM Development Tools package group on hosts in the dev host group only. 
 c) Updates all packages to the latest version on hosts in the dev host group only.
+
+<details>
+<summary><strong>Solution</strong></summary>
+
+</details>
 
 ## **4\. Install the RHEL system roles package and create a playbook called /home/gabriele/ansible/timesync.yml that:**
 
@@ -51,6 +69,11 @@ b) Uses the timesync role.
 c) Configures the role to use the time server 172.25.254.250   
 d) Configures the role to set the iburst parameter as enabled.
 
+<details>
+<summary><strong>Solution</strong></summary>
+
+</details>
+
 ## **5\. Create a role called apache in /home/gabriele/ansible/roles with the following requirements:**
 
 a) The httpd package should be installed, httpd service should be enabled on boot, and started.   
@@ -58,6 +81,11 @@ b) The firewall is enabled and running with a rule to allow access to the web se
 c) Create file index.html.j2 and used it to create the file /var/www/html/index.html with the following output: 
 
 *Welcome to HOSTNAME on IPADDRESS, where HOSTNAME is the fully qualified domain name of the managed node and IPADDRESS is the IP address of the managed node.*
+
+<details>
+<summary><strong>Solution</strong></summary>
+
+</details>
 
 ## **6\. Use Ansible Galaxy with the requirements file called /home/gabriele/ansible/roles/requirements.yml and install roles to /home/gabriele/ansible/roles from the following URLs:**
 
