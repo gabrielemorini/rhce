@@ -2,7 +2,7 @@
 
 ## 📋 Introduction
 
-This repository contains my complete implementation of **RHCE (Red Hat Certified Engineer)** exam objectives. 
+This repository contains my complete implementation of **RHCE (Red Hat Certified Engineer)** exam objectives. Click on mock-exam-example.md to start!
 
 ## 🏗️ Architecture
 
@@ -16,6 +16,38 @@ This repository contains my complete implementation of **RHCE (Red Hat Certified
 │  • Roles        │    │  └─────┘ └─────┘ └───────┘ └─────────┘ │
 │  • Collections  │    └────────────────────────────────────────┘
 └─────────────────┘
+```
+
+```
+rhce-ansible-project/
+├── README.md
+├── ansible.cfg                 # Configurazione principale Ansible
+├── inventory/
+│   ├── hosts                  # Inventory statico
+│   └── group_vars/           # Variables per gruppi
+├── playbooks/
+│   ├── site.yml              # Playbook principale
+│   ├── packages.yml          # Gestione pacchetti
+│   ├── timesync.yml          # Sincronizzazione tempo
+│   ├── user_management.yml   # Gestione utenti
+│   ├── storage.yml           # Configurazione storage
+│   └── security.yml          # Hardening sicurezza
+├── roles/
+│   ├── apache/               # Ruolo custom Apache
+│   ├── common/               # Configurazioni comuni
+│   └── requirements.yml      # Ruoli Ansible Galaxy
+├── templates/
+│   ├── index.html.j2         # Template web server
+│   └── hosts.j2              # Template file hosts
+├── vars/
+│   ├── vault.yml             # Variabili crittografate
+│   └── user_list.yml         # Lista utenti
+├── scripts/
+│   └── yum-repo.sh           # Script repository setup
+└── docs/
+    ├── installation.md       # Guida installazione
+    ├── usage.md              # Guida utilizzo
+    └── troubleshooting.md    # Risoluzione problemi
 ```
 
 ### Prerequisites
