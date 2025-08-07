@@ -178,7 +178,9 @@ echo 'password=gabdev' > password.txt
   ```
 </details>
 
-## **14\. Create user accounts.**   **A list of users to be created can be found in the file called user\_list.yml save to /home/gabriele/ansible/ directory.**   **Using the password vault created elsewhere in this exam, create a playbook called create\_user.yml that creates user accounts as follows:**
+## **14\. Create user accounts.**   
+**A list of users to be created can be found in the file called users\_list.yml save to /home/gabriele/ansible/vars directory.**   
+**Using the password vault created elsewhere in this exam, create a playbook called create\_user.yml that creates user accounts as follows:**
 
 a) Users with a job description of developer should be created on managed nodes in the dev and test host groups assigned the password from the dev\_pass variable and are members of supplementary group devops.   
 b) Users with a job description of manager should be created on managed nodes in the prod host group assigned the password from the mgr\_pass variable and are members of supplementary group opsmgr.   
@@ -202,7 +204,7 @@ a) Creates a logical volume with the following requirements:
 \- If the volume research does not exist, the error message "volume group does not exist" should be displayed.   
 \- Don't mount the logical volume in any way.
 
-**17\. Create a partition:**
+## **17\. Create a partition:**
 
 Create /home/gabriele/ansible/partition.yml, which will create partitions on all the managed nodes: 
 
