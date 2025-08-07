@@ -114,12 +114,25 @@ e) Create the file /webtest/index.html with a single line of text that reads: Te
 
 a) The name of the vault is vault.yml   
 b) The vault contains two variables, dev\_pass with value as redhat and mgr\_pass with value as linux respectively.   
-c) The password to encrypt and decrypt the vault is gabdev  
+c) The password to encrypt and decrypt the vault is gabriele  
 d) The password is stored in the file /home/gabriele/ansible/password.txt file.
+
+<details>
+<summary><strong>Solution</strong></summary>
+
+  ```bash
+echo 'password=gabriele' > password.txt
+
+ansible-vault create vault.yml --vault-password-file=password.txt
+dev_pass: redhat
+mgr_pass: linux
+  ```
+</details>
+
 
 ## **10\. Generate hosts files:**
 
-a) Create the hosts.j2 template so that it can be used to generate a file with a line for each inventory host in the same format as /etc/hosts. Move the hosts.j2 template to the correct directory, if needed create it.
+a) Create the myhosts.j2 template so that it can be used to generate a file with a line for each inventory host in the same format as /etc/hosts. Move the myhosts.j2 template to the correct directory, if needed create it.
 
 b) Create a playbook called gen\_hosts.yml that uses this template to generate the file /etc/myhosts on hosts in the dev host group. 
 
@@ -152,8 +165,18 @@ b) The playbook replaces the contents of /etc/issue with a single line of text a
 ## **13\. Rekey an existing Ansible vault as per the following conditions:**
 
 a) Use the vault.yml file which you have created earlier.   
-b) Set the new vault password as ansible.   
+b) Set the new vault password as gabdev.   
 c) The vault remains in an encrypted state with the new password.
+
+<details>
+<summary><strong>Solution</strong></summary>
+
+  ```bash
+ansible-vault rekey vault.yml --vault-password-file=password.txt
+
+echo 'password=gabdev' > password.txt
+  ```
+</details>
 
 ## **14\. Create user accounts.**   **A list of users to be created can be found in the file called user\_list.yml save to /home/gabriele/ansible/ directory.**   **Using the password vault created elsewhere in this exam, create a playbook called create\_user.yml that creates user accounts as follows:**
 
