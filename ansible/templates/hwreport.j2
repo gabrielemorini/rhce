@@ -1,7 +1,7 @@
 
 {%  for host in groups['all']  %}
 
-Inventory hostname: {{ hostvars[host]['ansible_facts']['inventory_hostname'] }}
+Inventory hostname: {{ hostvars[host]['ansible_facts']['hostname'] }}
 Total memory in MB: {{ hostvars[host]['ansible_facts']['memtotal_mb'] }}
 BIOS version: {{ hostvars[host]['ansible_facts']['bios_version'] }}
 

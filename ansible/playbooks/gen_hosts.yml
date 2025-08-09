@@ -7,6 +7,6 @@
   tasks:
     - name: create myhost file
       template:
-        src: myhost.j2
+        src: ../templates/myhosts.j2
         dest: /etc/myhosts
       

@@ -93,11 +93,11 @@ print_status "INFO" "Validating Task 2: YUM Repository Setup"
 
 # Check if yum-repo.sh script exists
 if [ -f "${ANSIBLE_BASE_DIR}/scripts/yum-repo.sh" ]; then
-    print_status "PASS" "yum-repo.sh script exists"
+    print_status "PASS" "yum_repo.sh script exists"
     echo "yum-repo.sh content:" >> $REPORT_FILE
-    cat ${ANSIBLE_BASE_DIR}/scripts/yum-repo.sh >> $REPORT_FILE 2>&1
+    cat ${ANSIBLE_BASE_DIR}/scripts/yum_repo.sh >> $REPORT_FILE 2>&1
 else
-    print_status "FAIL" "yum-repo.sh script not found"
+    print_status "FAIL" "yum_repo.sh script not found"
 fi
 
 # Verify repositories on managed nodes
@@ -202,9 +202,9 @@ else
 fi
 
 # Check proxy functionality on node03(dev) - Should be allowed!
-ansible node03 -m shell -a "curl -I --proxy node05:3128 http://google.com"
+ansible node03 -m shell -a "curl -I --proxy node05:3128 http://google.com" >> $REPORT_FILE
 # Check proxy functionality on node02(test) - Should be blocked!
-ansible node02 -m shell -a "curl -I --proxy node05:3128 http://google.com"
+ansible node02 -m shell -a "curl -I --proxy node05:3128 http://google.com" >> $REPORT_FILE
 
 # Task 8: Test Environment Setup
 echo "" >> $REPORT_FILE
@@ -334,7 +334,7 @@ else
 fi
 
 # Check create_users.yml syntax
-if ansible-playbook --syntax-check playbooks/create_users.yml >/dev/null 2>&1; then
+if ansible-playbook --syntax-check playbooks/create_users.yml --vault-password-file=vars/password.txt >/dev/null 2>&1; then
     print_status "PASS" "create_users.yml syntax is valid"
 else
     print_status "FAIL" "create_users.yml syntax error"
@@ -388,21 +388,21 @@ else
 fi
 
 # Check partition.yml syntax
-if ansible-playbook --syntax-check playbooks/partition.yml >/dev/null 2>&1; then
-    print_status "PASS" "partition.yml syntax is valid"
+if ansible-playbook --syntax-check playbooks/partitions.yml >/dev/null 2>&1; then
+    print_status "PASS" "partitions.yml syntax is valid"
 else
-    print_status "FAIL" "partition.yml syntax error"
+    print_status "FAIL" "partitions.yml syntax error"
 fi
 
 # Verify logical volumes
 echo "Logical volume verification:" >> $REPORT_FILE
-ansible all -m shell -a 'printf "\n==== %s ====\n" "lvs 2>/dev/null | grep data || echo 'No data LV found'"' >> $REPORT_FILE 2>&1
-ansible all -m shell -a 'printf "\n==== %s ====\n" "vgs 2>/dev/null | grep research || echo 'No research VG found'"' >> $REPORT_FILE 2>&1
+ansible all -m shell -a "lvs 2>/dev/null | grep data || echo 'No data LV found'" >> $REPORT_FILE 2>&1
+ansible all -m shell -a "vgs 2>/dev/null | grep research || echo 'No research VG found'" >> $REPORT_FILE 2>&1
 
 # Verify partitions and mounts
 echo "Partition and mount verification:" >> $REPORT_FILE
-ansible prod -m shell -a 'printf "\n==== %s ====\n" "mount | grep /srv || echo 'No /srv mount found'"' >> $REPORT_FILE 2>&1
-ansible all -m shell -a 'printf "\n==== %s ====\n" "lsblk | grep sdb || echo 'No sdb disk found'"' >> $REPORT_FILE 2>&1
+ansible prod -m shell -a "mount | grep /srv || echo 'No /srv mount found'" >> $REPORT_FILE 2>&1
+ansible all -m shell -a "lsblk | grep sdb || echo 'No sdb disk found'" >> $REPORT_FILE 2>&1
 
 # Task 17: (Task 18 in original) SELinux Configuration
 echo "" >> $REPORT_FILE

@@ -2,7 +2,17 @@
 
 ## 📋 Introduction
 
-This repository contains my complete implementation of **RHCE (Red Hat Certified Engineer)** exam objectives. Click on [mock-exam-example.md](https://github.com/rhce/mock-exam-example.md) to start!
+This repository contains my full implementation of the **RHCE (Red Hat Certified Engineer)** exam objectives. To dive right in, start with the [mock-exam-example.md](https://github.com/rhce/mock-exam-example.md) file.
+
+This is not an official exam and certain topics not covered here (e.g., SELinux role usage) should also be studied to ensure you pass the exam.
+
+### Sources
+
+To create this exam simulation, I freely took inspiration from:
+- Red Hat RHCE 8 (EX294) Cert Guide by Sander van Vugt
+- Nehra Classes Youtube Channel
+- Others
+
 
 ## 🏗️ Architecture
 
@@ -51,8 +61,9 @@ ansible/
 │   ├── vault.yml             # Criptography Variabils
 │   └── users_list.yml        # Users List
 ├── scripts/
-│   ├── yum-repo-local.sh     # Local script repository setup
-│   └── yum-repo.sh           # Script repository setup
+│   ├── ansible_navigator.sh  # Ansible Navigator Setup
+│   ├── yum_repo_local.sh     # Local script repository setup
+│   └── yum_repo.sh           # Script repository setup
 └── tests/
     ├── syntax_check.sh                # Playbooks syntax test  --syntax-check 
     ├── syntax_check.txt               # Sample output from syntax_check.sh for reference
@@ -60,6 +71,7 @@ ansible/
     └── rhce_validation_report.txt     # Sample output from validation_script for reference
     
 ```
+To create a simple ansible project you can use my bash script [init-ansible-project.sh](https://github.com/rhce/init-ansible-project.sh)
 
 ### Prerequisites
 ```bash
@@ -90,3 +102,7 @@ ansible-galaxy collection install -r requirements-repo.yml
 ./tests/validation_script.sh
 
 ```
+
+
+
+

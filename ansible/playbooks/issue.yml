@@ -8,7 +8,7 @@
         path: /etc/issue
         regexp: '^.*$'
         line: 'Development'
-      when: inventory_hostaname in groups['dev']
+      when: inventory_hostname in groups['dev']
     
     - name: replace content to test group 
       lineinfile: 

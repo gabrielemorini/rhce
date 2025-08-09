@@ -5,7 +5,7 @@
 # template to generate /etc/myhosts file
 {% for host in groups['all'] %}
 
-{{ hostvars[host]['ansible_facts']['ansible_ipv4']['address'] }} {{ hostvars[host]['ansible_facts']['fqdn'] }} {{ hostvars[host]['ansible_facts']['hostname'] }}
+{{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }} {{ hostvars[host]['ansible_facts']['fqdn'] }} {{ hostvars[host]['ansible_facts']['hostname'] }}
 
 {% endfor %}
 

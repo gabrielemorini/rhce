@@ -1,11 +1,11 @@
 ---
 
-- hosts: localhost
+- hosts: test
   tasks:
     - set_fact:
         sda: "{{ ansible_facts['devices']['sda']['partitions']['sda1']['size'].split(' ')[0] | int }}"
     - debug:
-        var: ansible_facts['lvm']['vgs']['size_g']
+        var: ansible_facts['lvm']['vgs']['research']['size_g'] | int 
   #  - debug:
   #      msg: "The size of /dev/sda1 is {{ sda }} MiB"
   #    when: sda | int < 1200

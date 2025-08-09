@@ -3,7 +3,8 @@
 - name: create users with developer role
   hosts: dev,test
   vars_files:
-    - users_list.yml
+    - ../vars/users_list.yml
+    - ../vars/vault.yml
   tasks:
     - name: create devops group
       group:
@@ -14,7 +15,7 @@
       user:
         name: "{{ item.name }}"
         uid: "{{ item.uid }}"
-        group: "devops"
+        groups: devops
         append: true
         password: "{{ dev_pass | password_hash('sha512') }}"
         state: present
@@ -24,7 +25,8 @@
 - name: create users with manager role
   hosts: prod
   vars_files:
-    - users_list.yml
+    - ../vars/users_list.yml
+    - ../vars/vault.yml
   tasks:
     - name: create managers group
       group:
@@ -34,7 +36,7 @@
       user:
         name: "{{ item.name }}"
         uid: "{{ item.uid }}"
-        group: "opsmgr"
+        groups: opsmgr
         append: true
         password: "{{ mgr_pass | password_hash('sha512') }}"
         state: present

@@ -8,5 +8,5 @@
   tasks:
     - name: Create hardware report file
       template:
-        src: hwreport.j2
+        src: ../templates/hwreport.j2
         dest: /root/hwreport.txt
