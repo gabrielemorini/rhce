@@ -18,7 +18,7 @@
     
     - name: Install group packages
       yum:
-        name: '@RPM Development Tools'
+        name: "@RPM Development Tools"
         state: present
     
     - name: Update all packages
