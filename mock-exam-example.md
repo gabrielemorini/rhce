@@ -107,8 +107,8 @@ a) The playbook contains a play that runs on hosts in the balancers host group a
 a) The playbook runs on managed nodes in the test host group.   
 b) Create the directory /webtest with the group ownership webtest group and having the regular permissions rwx for the owner and group and rx for the others.   
 c) Apply the special permissions: set group ID   
-d) Symbolically link /var/www/html/webtest to /webtest directory.   
-e) Create the file /webtest/index.html with a single line of text that reads: Testing.
+d) Create the file /webtest/index.html with a single line of text that reads: Testing.
+e) Symbolically link /webtest/index.html to /var/www/html/webtest/index.html.  
 
 ## **9\. Create an Ansible vault to store user passwords with the following conditions:**
 
