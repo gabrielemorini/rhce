@@ -1,0 +1,10 @@
+---
+
+- name: zabbix
+  src: https://galaxy.ansible.com/download/zabbix-zabbix-1.0.6.tar.gz
+
+- name: security
+  src: https://galaxy.ansible.com/download/openafs\_contrib-openafs-1.9.0.tar.gz
+
+- name: squid
+  src: https://galaxy.ansible.com/download/mafalb-squid-0.2.0.tar.gz
