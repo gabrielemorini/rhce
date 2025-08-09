@@ -25,6 +25,6 @@ ansible-galaxy collection install -r requirements-repo.yml
 ./tests/syntax_check.sh
 
 # Validation all configuration
-./tests/validation_script.sh
+./tests/validation_report.sh
 
 ```
