@@ -19,37 +19,46 @@ This repository contains my complete implementation of **RHCE (Red Hat Certified
 ```
 
 ```
-rhce-ansible-project/
+ansible/
 ├── README.md
-├── ansible.cfg               # Configurazione principale Ansible
+├── ansible.cfg               # Configuration file
 ├── inventory/
-│   ├── hosts                 # Inventory statico
-│   └── group_vars/           # Variables per gruppi
+│   └── hosts                 # Static Inventory
+├── requirements.yml          # Roles and Collections to start this repository
 ├── playbooks/
-│   ├── site.yml              # Playbook principale
-│   ├── packages.yml          # Gestione pacchetti
-│   ├── timesync.yml          # Sincronizzazione tempo
-│   ├── user_management.yml   # Gestione utenti
-│   ├── storage.yml           # Configurazione storage
-│   └── security.yml          # Hardening sicurezza
+│   ├── yum-repo.yml          # 2
+│   ├── packages.yml          # 3
+│   ├── timesync.yml          # 4
+│   ├── apache.yml            # 5
+│   ├── squid.yml             # 7
+│   ├── test.yml              # 8
+│   ├── gen_hosts.yml         # 10
+│   ├── hwreport.yml          # 11
+│   ├── hwreport.yml          # 12
+│   ├── create_users.yml      # 14
+│   ├── cron.yml              # 15
+│   ├── lvm.yml               # 16
+│   ├── partition.yml         # 17
+│   ├── selinux.yml           # 18
+│   └── selinux2.yml          # 18
 ├── roles/
-│   ├── apache/               # Ruolo custom Apache
-│   ├── common/               # Configurazioni comuni
-│   ├── requirements-repo.yml # Roles and Collections to start this repository
-│   └── requirements.yml      # Ruoli Ansible Galaxy
+│   ├── apache/               # Custom role Apache
+│   └── requirements.yml      # 6
 ├── templates/
 │   ├── index.html.j2         # Template web server
 │   └── hosts.j2              # Template file hosts
 ├── vars/
-│   ├── vault.yml             # Variabili crittografate
-│   └── user_list.yml         # Lista utenti
+│   ├── vault.yml             # Criptography Variabils
+│   └── users_list.yml        # Users List
 ├── scripts/
 │   ├── yum-repo-local.sh     # Local script repository setup
 │   └── yum-repo.sh           # Script repository setup
-└── docs/
-    ├── installation.md       # Guida installazione
-    ├── usage.md              # Guida utilizzo
-    └── troubleshooting.md    # Risoluzione problemi
+└── tests/
+    ├── syntax_check.sh                # Playbooks syntax test  --syntax-check 
+    ├── syntax_check.txt               # Sample output from syntax_check.sh for reference
+    ├── validation_script.sh           # Playbooks validation script
+    └── rhce_validation_report.txt     # Sample output from validation_script for reference
+    
 ```
 
 ### Prerequisites
@@ -69,4 +78,15 @@ ansible-galaxy role install -r requirements-repo.yml
 
 # Install collections
 ansible-galaxy collection install -r requirements-repo.yml
+```
+
+### Test
+```bash
+
+# Syntax Check for all playbooks
+./tests/syntax_check.sh
+
+# Validation all configuration
+./tests/validation_script.sh
+
 ```
