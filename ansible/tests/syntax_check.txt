@@ -1,0 +1,15 @@
+✅ Syntax check passed for /home/automation/ansible/playbooks/apache.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/create_users.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/cron.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/facts.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/gen_hosts.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/hwreport.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/issue.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/lvm.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/packages.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/partitions.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/selinux2.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/selinux.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/test.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/timesync.yml
+✅ Syntax check passed for /home/automation/ansible/playbooks/yum-repo.yml

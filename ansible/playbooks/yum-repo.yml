@@ -1,0 +1,23 @@
+---
+
+- name: configure repositories
+  hosts: all
+  tasks:
+
+    - name: configure BaseOS
+      yum_repository:
+        name: BaseOS
+        baseurl: file:///mnt/BaseOS/
+        description: 'Base OS Repo'
+        gpgcheck: yes
+        enabled: yes
+        key: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+    - name: configure AppStream
+      yum_repository:
+        name: AppStream
+        baseurl: file:///mnt/AppStream/
+        description: 'AppStream Repo'
+        gpgcheck: yes
+        enabled: yes
+        key: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release

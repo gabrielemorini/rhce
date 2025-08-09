@@ -1,0 +1,69 @@
+--- 
+
+- name: create logical volume
+  pre_tasks:
+    - name: check if /dev/sda1 exists
+      fail:
+        msg: "The partition /dev/sda1 not exists."
+      when: " 'sda1' not in ansible_facts['devices']['sda']['partitions']"
+    - name: create sda partition
+      parted:
+        device: /dev/sda
+        number: 1
+        state: present
+        part_type: primary
+        size: 2G
+
+  hosts: all
+  tasks:
+    - set_fact:
+        sda1: "{{ ansible_facts['devices']['sda']['partitions']['sda1']['size'].split(' ')[0] | int }}"
+
+    - name: create logical volume group 
+      block:
+      - name: create volume group if /dev/sda1 > 1200MiB
+        lvg:
+          vg: research
+          pvs: /dev/sda1
+          state: present
+      
+      rescue:
+      - name: error message - volume group is < 1200MiB
+        debug:
+          msg: "The partition /dev/sda1 is less than 1200MiB, cannot create volume group."
+
+      - name: create volume group if /dev/sda1 < 1200MiB
+        lvg:
+          vg: research
+          pvs: /dev/sda1
+          state: present
+      
+      always:
+        - name: check if volume group exists
+          fail:
+            msg: "The volume group 'research' doesn't exists."
+          when: ansible_facts['lvm']['vgs']['research'] is not defined
+
+        - name: create 1200MiB logical volume
+          lvol:
+            vg: research
+            lv: data
+            size: 1200m
+            state: present
+          when: ansible_facts['lvm']['vgs']['size_g'] >= 1200
+
+        - name: create 800MiB logical volume
+          lvol:
+            vg: research
+            lv: data
+            size: 800m
+            state: present
+          when: ansible_facts['lvm']['vgs']['size_g'] < 1200
+
+        - name: create filesystem on logical volume
+          filesystem:
+            fstype: ext4
+            dev: /dev/research/data
+        
+
+        

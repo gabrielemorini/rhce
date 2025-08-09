@@ -1,0 +1,28 @@
+---
+
+- name: Install packages
+  hosts: dev,test,prod
+  tasks:
+
+    - name: Install php and mariadb
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - php
+        - mariadb
+
+- name: Install group packages and update all packages 
+  hosts: dev
+  tasks:
+    
+    - name: Install group packages
+      yum:
+        name: '@RPM Development Tools'
+        state: present
+    
+    - name: Update all packages
+      yum:
+        name: '*'
+        state: latest
+        exclude: kernel*

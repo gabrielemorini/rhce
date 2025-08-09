@@ -1,0 +1,25 @@
+--- 
+
+- name: replace content in /etc/issue file
+  hosts: all
+  tasks:
+    - name: replace content to dev group
+      lineinfile:
+        path: /etc/issue
+        regexp: '^.*$'
+        line: 'Development'
+      when: inventory_hostaname in groups['dev']
+    
+    - name: replace content to test group 
+      lineinfile: 
+        path: /etc/issue
+        regexp: '^.*$'
+        line: 'Testing'
+      when: inventory_hostname in groups['test']
+
+    - name: replace content to prod group
+      lineinfile:   
+        path: /etc/issue
+        regexp: '^.*$'
+        line: 'Production'
+      when: inventory_hostname in groups['prod']

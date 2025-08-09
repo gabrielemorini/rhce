@@ -1,0 +1,47 @@
+---  
+
+- name: create partition
+  hosts: all
+  tasks:
+
+    - name: check if /dev/sdb exists
+      fail:
+        msg: "The partition /dev/sdb not exists."
+      when: " 'sdb' not in ansible_facts['devices']"
+
+    - name: generate partition with block, rescue, always
+      block:
+        - name: create 1200MiB partition 
+          parted:
+            device: /dev/sdb
+            number: 1
+            state: present
+            part_end: 1200MiB
+        
+      rescue:
+        - name: show error message
+          debug:
+            msg: "Could not create partition of that size, creating 800MiB partition instead."
+  
+        - name: create partition if sdb < 800MiB
+          parted:
+            device: /dev/sdb
+            number: 1
+            state: present
+            part_end: 800MiB
+        
+      always:
+        - name: create filesystem
+          filesystem:
+            fstype: ext4
+            dev: /dev/sdb1
+  
+        - name: mount partition
+          mount:
+            path: /srv
+            src: /dev/sdb1
+            fstype: ext4
+            state: mounted
+          when:  
+            - " 'prod' in groups"
+            - inventory_hostname in groups['prod']  

@@ -1,0 +1,15 @@
+--- 
+
+users:
+- name: adam
+  job: developer
+  uid: 3000
+- name: gabriel
+  job: manager
+  uid: 3001
+- name: lucifer
+  job: developer
+  uid: 3002
+- name: eva
+  job: manager
+  uid: 3003

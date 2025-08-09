@@ -1,0 +1,26 @@
+--- 
+
+- name: Install Squid on balancers
+  hosts: balancers
+  become: true
+  tasks:
+    - name: open squid ports
+      firewalld:
+        service: squid
+        permanent: true
+        state: enabled
+        immediate: true
+  
+  roles:
+    - role: squid
+      squid_cfg:
+        acl:
+          allowed_clients:
+            - src 127.0.0.1
+            - src 192.168.1.203   # dev
+            - src 192.168.1.204   # prod1
+            - src 192.168.1.205   # prod2
+        http_access:
+          - allow allowed_clients
+          - deny all
+

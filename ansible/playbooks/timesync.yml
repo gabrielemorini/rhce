@@ -1,0 +1,13 @@
+---
+
+- name: Change timesync with role
+  hosts: all
+  vars:
+    timesync_ntp_servers:
+      - hostname: 172.25.254.250
+        iburst: true
+  roles:
+    - linux-system-roles.timesync
+
+
+

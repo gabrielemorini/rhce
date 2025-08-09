@@ -1,0 +1,42 @@
+--- 
+
+- name: create users with developer role
+  hosts: dev,test
+  vars_files:
+    - users_list.yml
+  tasks:
+    - name: create devops group
+      group:
+        name: devops
+        state: present
+
+    - name: create users
+      user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        group: "devops"
+        append: true
+        password: "{{ dev_pass | password_hash('sha512') }}"
+        state: present
+      loop: "{{ users }}"
+      when: item.job == 'developer'
+
+- name: create users with manager role
+  hosts: prod
+  vars_files:
+    - users_list.yml
+  tasks:
+    - name: create managers group
+      group:
+        name: opsmgr
+        state: present
+    - name: create users
+      user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        group: "opsmgr"
+        append: true
+        password: "{{ mgr_pass | password_hash('sha512') }}"
+        state: present
+      loop: "{{ users }}"
+      when: item.job == 'manager'

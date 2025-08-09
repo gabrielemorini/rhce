@@ -1,0 +1,18 @@
+--- 
+
+- name: create cron job for natasha
+  hosts: all
+  tasks:
+    - name: create natasha user
+      user: 
+        name: natasha
+        state: present
+    
+    - name: create cron job for natasha
+      cron:
+        name: "RHCE cron job"
+        user: natasha 
+        minute: "*/2"
+        job: logger "EX294 exam in progress"
+    
+    

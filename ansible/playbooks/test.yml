@@ -1,0 +1,36 @@
+--- 
+
+- name: test playbook
+  hosts: test
+  tasks:
+    - name: create /webtest directory
+      file:
+        path: /webtest
+        state: directory
+        mode: '2755'
+    
+    - name: install httpd package
+      package:
+        name: httpd
+        state: present
+    - name: start httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: true 
+    
+    - name: create index.html file
+      file:
+        path: /var/www/html/index.html
+        state: touch
+        mode: '0644'
+    - name: write content to index.html 
+      copy:
+        dest: /webtest/index.html
+        content: "Testing"
+
+    - name: create symoblic link to index.html
+      file:
+        src: /var/www/html/index.html
+        dest: /webtest/index.html
+        state: link            

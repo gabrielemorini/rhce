@@ -1,0 +1,17 @@
+---
+
+# roles and collections required by the playbooks
+roles:
+  - name: linux-system-roles.timesync 
+    src:  https://github.com/linux-system-roles/timesync
+
+  - name: linux-system-roles.selinux
+    src:  https://github.com/linux-system-roles/selinux
+
+
+collections:
+  - name: ansible.posix
+    source: https://galaxy.ansible.com
+
+  - name: community.general
+    source: https://galaxy.ansible.com

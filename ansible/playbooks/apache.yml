@@ -1,0 +1,8 @@
+--- 
+
+# Install and configure Apache web server with custom role
+- name: Install and configure Apache web server with custom role
+  hosts: webservers
+  roles:
+    - apache
+    

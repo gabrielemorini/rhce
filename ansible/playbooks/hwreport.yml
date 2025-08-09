@@ -1,0 +1,12 @@
+--- 
+
+- name: Gather hardware information
+  hosts: all
+  tasks: []
+- name: Create hardware report file
+  hosts: localhost
+  tasks:
+    - name: Create hardware report file
+      template:
+        src: hwreport.j2
+        dest: /root/hwreport.txt

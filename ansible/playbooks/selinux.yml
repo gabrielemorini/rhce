@@ -1,0 +1,8 @@
+--- 
+
+- name: set SELinux to enforcing
+  hosts: all
+  vars:
+    selinux_state: enforcing
+  roles:
+    - linux-system-roles.selinux

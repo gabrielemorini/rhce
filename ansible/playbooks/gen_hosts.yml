@@ -1,0 +1,12 @@
+---
+- name: Gather information
+  hosts: all
+  tasks: []
+- name: generate myhost file with template 
+  hosts: all
+  tasks:
+    - name: create myhost file
+      template:
+        src: myhost.j2
+        dest: /etc/myhosts
+      
