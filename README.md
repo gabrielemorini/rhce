@@ -2,7 +2,7 @@
 
 ## 📋 Introduction
 
-This repository contains my full implementation of the **RHCE (Red Hat Certified Engineer)** exam objectives. To dive right in, start with the [mock-exam-example.md](https://github.com/rhce/mock-exam-example.md) file.
+This repository contains my full implementation of the **RHCE (Red Hat Certified Engineer)** exam objectives. To dive right in, start with the [mock-exam-example.md](https://github.com/gabrielemorini/rhce/blob/main/mock-exam-example.md) file.
 
 This is not an official exam and certain topics not covered here (e.g., SELinux role usage) should also be studied to ensure you pass the exam.
 
